@@ -1,6 +1,8 @@
 # imports 
 require(graphics)
 
+require(adegenet)
+#install.packages("adegenet", dep=TRUE)
 # clear memory
 rm(list=ls())
 
@@ -70,4 +72,13 @@ kvalue_vs_sse = matrix(c(sse,kvalues), ncol=2)
 plot(kvalue_vs_sse, type="o", col="red", pch=8, xlab="Sum of Squared Error", ylab="K values")
 # looks like the best improvement is at K = 30 and no further after that
 
-AIC(cl, k = 2)
+
+####################
+## PROBLEM 2: Alternative approach
+####################
+
+foo.AIC <- find.clusters(random.fullmatrix, n.pca=100, choose=FALSE, stat="AIC")
+plot(foo.AIC$Kstat, type="o", xlab="number of clusters (K)", ylab="AIC", col="purple", main="Detection based on AIC")
+
+
+
